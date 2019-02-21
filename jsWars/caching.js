@@ -4,27 +4,27 @@ const cache =(func)=> {
 		let key = JSON.stringify(args);
 		key in cache_object
 			? null
-			: cache_object[key] = func(...args);
+			: cache_object[key] = func(args);
         
 		return cache_object[key];
   
 	};
 };
   
-const complexFunction1 = (...args) => {
+const complexFunction1 = (args) => {
 	complexFunction1Call++;
 	let result = 0;
 	args.map(arg => result=arg+result);
 	return result;
 };
   
-const complexFunction2 = (...args) => {
+const complexFunction2 = (args) => {
 	complexFunction2Call++;
 	let result = 0;
 	args.map(arg => result=arg-result);
 	return result;
 };
-const complexFunction3 = (...args) => {
+const complexFunction3 = (args) => {
 	complexFunction3Call++;
 	let result = 0;
 	args.map(arg => result=arg*result);
@@ -53,5 +53,6 @@ cachedFunction3(3);
 cachedFunction3(3); //pulls from cache
 // called two times, but complexFunction1Call === 1
 
-// console.log(complexFunction1Call, complexFunction2Call, complexFunction3Call);
-  
+/*eslint-disable */
+console.log(complexFunction1Call, complexFunction2Call, complexFunction3Call);
+/*eslint-enable */
